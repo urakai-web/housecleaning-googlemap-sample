@@ -18,7 +18,7 @@ export default function MapSection() {
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          title="くりんラボ 所在地"
+          title="金沢クリーン 所在地"
         />
       </div>
     </section>

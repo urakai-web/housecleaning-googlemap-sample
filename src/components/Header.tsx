@@ -22,7 +22,7 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
         <a href="#top" className="flex items-center gap-2">
-          <img src="/images/ロゴ.png" alt="くりんラボ" className="h-10 w-auto object-contain" />
+          <img src="/images/ロゴ.png" alt="金沢クリーン" className="h-10 w-auto object-contain" />
         </a>
 
         {/* Desktop nav */}

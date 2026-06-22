@@ -9,7 +9,7 @@ export default function Footer() {
 
           {/* Brand */}
           <div>
-            <img src="/images/ロゴ.png" alt="くりんラボ" className="h-12 w-auto object-contain mb-3 brightness-0 invert" />
+            <img src="/images/ロゴ.png" alt="金沢クリーン" className="h-12 w-auto object-contain mb-3 brightness-0 invert" />
             <p className="text-white/60 text-sm leading-relaxed">
               札幌市を中心に、ハウスクリーニング・<br />
               便利サービスを提供しています。
@@ -70,7 +70,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/10 pt-6 text-center text-white/30 text-xs">
-          &copy; {new Date().getFullYear()} くりんラボ All Rights Reserved.
+          &copy; {new Date().getFullYear()} 金沢クリーン All Rights Reserved.
         </div>
       </div>
     </footer>
