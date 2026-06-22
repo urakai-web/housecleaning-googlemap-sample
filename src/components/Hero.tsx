@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 
 const LINE_URL = 'https://page.line.me/245ksvcv?openQrModal=true'
 const TEL = '090-6692-9256'
@@ -27,8 +27,10 @@ const staff = [
 export default function Hero() {
   const [bgCurrent, setBgCurrent] = useState(0)
   const [bgFading, setBgFading] = useState(false)
-  const [staffIndex, setStaffIndex] = useState(0)
-  const [staffFading, setStaffFading] = useState(false)
+  const staffRef = useRef<HTMLDivElement>(null)
+  const dragging = useRef(false)
+  const startX = useRef(0)
+  const scrollLeft = useRef(0)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -41,15 +43,22 @@ export default function Hero() {
     return () => clearInterval(timer)
   }, [])
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setStaffFading(true)
-      setTimeout(() => {
-        setStaffIndex(prev => (prev + 1) % staff.length)
-        setStaffFading(false)
-      }, 400)
-    }, 4000)
-    return () => clearInterval(timer)
+  const onPointerDown = useCallback((e: React.PointerEvent) => {
+    if (!staffRef.current) return
+    dragging.current = true
+    startX.current = e.clientX
+    scrollLeft.current = staffRef.current.scrollLeft
+    staffRef.current.setPointerCapture(e.pointerId)
+  }, [])
+
+  const onPointerMove = useCallback((e: React.PointerEvent) => {
+    if (!dragging.current || !staffRef.current) return
+    const dx = e.clientX - startX.current
+    staffRef.current.scrollLeft = scrollLeft.current - dx
+  }, [])
+
+  const onPointerUp = useCallback(() => {
+    dragging.current = false
   }, [])
 
   return (
@@ -120,42 +129,30 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="flex-shrink-0 animate-fadein-delay w-full md:w-72 lg:w-80 flex justify-center">
-            <div className="relative w-56 md:w-64 lg:w-72">
-              {staff.map((s, i) => {
-                const isCurrent = i === staffIndex
-                const isNext = i === (staffIndex + 1) % staff.length
-                return (
-                  <div
-                    key={s.id}
-                    className="transition-all duration-500 ease-in-out"
-                    style={{
-                      position: isCurrent ? 'relative' : 'absolute',
-                      top: 0,
-                      left: isNext ? '70%' : isCurrent ? 0 : '-70%',
-                      opacity: isCurrent ? (staffFading ? 0 : 1) : isNext ? 0.35 : 0,
-                      transform: isNext ? 'scale(0.85)' : 'scale(1)',
-                      zIndex: isCurrent ? 2 : 1,
-                      width: '100%',
-                      pointerEvents: isCurrent ? 'auto' : 'none',
-                    }}
-                  >
-                    <div className="flex flex-col items-center gap-3">
-                      <img
-                        src={s.image}
-                        alt={s.name}
-                        className="w-full aspect-[3/4] object-cover object-top rounded-xl shadow-2xl"
-                      />
-                      <div className="bg-white/80 backdrop-blur-sm border border-sky-lighter rounded-xl px-4 py-2 text-center shadow-sm">
-                        <p className="text-xs text-navy/50 font-medium mb-0.5">スタッフ</p>
-                        <p className="text-navy font-black text-base tracking-wide">{s.name}</p>
-                        <p className="text-xs text-navy/70 mt-1">{s.subtitle}</p>
-                      </div>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
+          <div
+            ref={staffRef}
+            className="flex-shrink-0 animate-fadein-delay w-full md:w-72 lg:w-80 overflow-x-auto flex gap-4 px-4 -mx-4 cursor-grab active:cursor-grabbing select-none"
+            style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' } as React.CSSProperties}
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onPointerUp={onPointerUp}
+            onPointerCancel={onPointerUp}
+          >
+            {staff.map(s => (
+              <div key={s.id} className="shrink-0 w-48 md:w-56 lg:w-64 flex flex-col items-center gap-3">
+                <img
+                  src={s.image}
+                  alt={s.name}
+                  className="w-full aspect-[3/4] object-cover object-top rounded-xl shadow-2xl"
+                  draggable={false}
+                />
+                <div className="bg-white/80 backdrop-blur-sm border border-sky-lighter rounded-xl px-4 py-2 text-center shadow-sm">
+                  <p className="text-xs text-navy/50 font-medium mb-0.5">スタッフ</p>
+                  <p className="text-navy font-black text-base tracking-wide">{s.name}</p>
+                  <p className="text-xs text-navy/70 mt-1">{s.subtitle}</p>
+                </div>
+              </div>
+            ))}
           </div>
 
         </div>

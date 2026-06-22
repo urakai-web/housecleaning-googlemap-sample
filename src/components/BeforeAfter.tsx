@@ -116,11 +116,11 @@ export default function BeforeAfter() {
         </div>
 
         <div
-          className="flex gap-5 overflow-x-auto snap-x snap-proximity pb-4 -mx-4 px-4"
+          className="flex gap-5 overflow-x-auto pb-4 -mx-4 px-4"
           style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' } as React.CSSProperties}
         >
           {cases.map(c => (
-            <div key={c.id} className="shrink-0 w-72 md:w-80 snap-start bg-white rounded-2xl overflow-hidden shadow-sm">
+            <div key={c.id} className="shrink-0 w-72 md:w-80 bg-white rounded-2xl overflow-hidden shadow-sm">
               <BeforeAfterSlider before={c.before} after={c.after} />
               <div className="p-5">
                 <div className="flex items-center gap-2 mb-1">

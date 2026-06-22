@@ -46,13 +46,13 @@ export default function Works() {
         </div>
 
         <div
-          className="flex gap-4 overflow-x-auto snap-x snap-proximity pb-4 -mx-4 px-4"
+          className="flex gap-4 overflow-x-auto pb-4 -mx-4 px-4"
           style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' } as React.CSSProperties}
         >
           {works.map(work => (
             <article
               key={work.id}
-              className="shrink-0 w-64 md:w-72 snap-start bg-white border border-sky-lighter rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group"
+              className="shrink-0 w-64 md:w-72 bg-white border border-sky-lighter rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group"
             >
               <div className="aspect-video overflow-hidden">
                 <img
