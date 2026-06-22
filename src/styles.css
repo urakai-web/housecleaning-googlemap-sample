@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #17365D;
+  --color-navy-dark: #1E3A5F;
+  --color-sky-light: #EAF4FF;
+  --color-sky-lighter: #D8ECFF;
+  --color-line-green: #06C755;
+  --color-off-white: #F7FAFC;
+
+  --font-sans: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-navy);
+  background-color: #ffffff;
+}
+
+.before-after-slider {
+  position: relative;
+  overflow: hidden;
+  cursor: ew-resize;
+  user-select: none;
+}
+
+.before-after-slider .before-image {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.before-after-slider .divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: white;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.before-after-slider .divider-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  cursor: ew-resize;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadein {
+  animation: fadeIn 0.7s ease forwards;
+}
+
+.animate-fadein-delay {
+  animation: fadeIn 0.7s ease 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-fadein-delay2 {
+  animation: fadeIn 0.7s ease 0.4s forwards;
+  opacity: 0;
+}
