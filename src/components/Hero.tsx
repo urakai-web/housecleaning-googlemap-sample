@@ -27,6 +27,8 @@ const staff = [
 export default function Hero() {
   const [bgCurrent, setBgCurrent] = useState(0)
   const [bgFading, setBgFading] = useState(false)
+  const [staffIndex, setStaffIndex] = useState(0)
+  const [staffFading, setStaffFading] = useState(false)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -36,6 +38,17 @@ export default function Hero() {
         setBgFading(false)
       }, 500)
     }, 5000)
+    return () => clearInterval(timer)
+  }, [])
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setStaffFading(true)
+      setTimeout(() => {
+        setStaffIndex(prev => (prev + 1) % staff.length)
+        setStaffFading(false)
+      }, 400)
+    }, 4000)
     return () => clearInterval(timer)
   }, [])
 
@@ -107,21 +120,42 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="flex-shrink-0 flex gap-4 items-end animate-fadein-delay w-full md:w-auto justify-center">
-            {staff.map(s => (
-              <div key={s.id} className="flex flex-col items-center gap-3">
-                <img
-                  src={s.image}
-                  alt={s.name}
-                  className="w-36 sm:w-40 md:w-48 lg:w-56 aspect-[3/4] object-cover object-top rounded-xl shadow-2xl"
-                />
-                <div className="bg-white/80 backdrop-blur-sm border border-sky-lighter rounded-xl px-4 py-2 text-center shadow-sm">
-                  <p className="text-xs text-navy/50 font-medium mb-0.5">スタッフ</p>
-                  <p className="text-navy font-black text-base tracking-wide">{s.name}</p>
-                  <p className="text-xs text-navy/70 mt-1">{s.subtitle}</p>
-                </div>
-              </div>
-            ))}
+          <div className="flex-shrink-0 animate-fadein-delay w-full md:w-72 lg:w-80 flex justify-center">
+            <div className="relative w-56 md:w-64 lg:w-72">
+              {staff.map((s, i) => {
+                const isCurrent = i === staffIndex
+                const isNext = i === (staffIndex + 1) % staff.length
+                return (
+                  <div
+                    key={s.id}
+                    className="transition-all duration-500 ease-in-out"
+                    style={{
+                      position: isCurrent ? 'relative' : 'absolute',
+                      top: 0,
+                      left: isNext ? '70%' : isCurrent ? 0 : '-70%',
+                      opacity: isCurrent ? (staffFading ? 0 : 1) : isNext ? 0.35 : 0,
+                      transform: isNext ? 'scale(0.85)' : 'scale(1)',
+                      zIndex: isCurrent ? 2 : 1,
+                      width: '100%',
+                      pointerEvents: isCurrent ? 'auto' : 'none',
+                    }}
+                  >
+                    <div className="flex flex-col items-center gap-3">
+                      <img
+                        src={s.image}
+                        alt={s.name}
+                        className="w-full aspect-[3/4] object-cover object-top rounded-xl shadow-2xl"
+                      />
+                      <div className="bg-white/80 backdrop-blur-sm border border-sky-lighter rounded-xl px-4 py-2 text-center shadow-sm">
+                        <p className="text-xs text-navy/50 font-medium mb-0.5">スタッフ</p>
+                        <p className="text-navy font-black text-base tracking-wide">{s.name}</p>
+                        <p className="text-xs text-navy/70 mt-1">{s.subtitle}</p>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
           </div>
 
         </div>

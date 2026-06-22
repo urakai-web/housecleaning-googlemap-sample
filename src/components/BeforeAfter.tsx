@@ -116,7 +116,7 @@ export default function BeforeAfter() {
         </div>
 
         <div
-          className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4"
+          className="flex gap-5 overflow-x-auto snap-x snap-proximity pb-4 -mx-4 px-4"
           style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' } as React.CSSProperties}
         >
           {cases.map(c => (
