@@ -3,15 +3,22 @@ import { useState, useRef, useCallback, useEffect } from 'react'
 const cases = [
   {
     id: '1',
-    before: '/images/トイレ掃除前.jpg',
-    after: '/images/トイレ掃除後.jpg',
+    before: '/images/トイレA.png',
+    after: '/images/トイレB.png',
     title: 'トイレクリーニング',
     description: '便器の黄ばみ・水垢・タンク内部まで丁寧に洗浄',
   },
   {
     id: '2',
-    before: '/images/洗面台掃除前.jpg',
-    after: '/images/洗面台掃除後.jpg',
+    before: '/images/エアコンA.png',
+    after: '/images/エアコンB.png',
+    title: 'エアコンクリーニング',
+    description: '内部のホコリやカビを徹底洗浄し、ニオイや効きを改善',
+  },
+  {
+    id: '3',
+    before: '/images/洗面台A.png',
+    after: '/images/洗面台B.png',
     title: '洗面台クリーニング',
     description: '蛇口周りのカルキ汚れ・排水口の詰まりを除去',
   },

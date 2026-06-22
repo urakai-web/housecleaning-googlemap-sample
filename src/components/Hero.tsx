@@ -12,9 +12,15 @@ const heroImages = [
 const staff = [
   {
     id: '1',
-    image: '/images/担当者.jpg',
-    name: 'お名前',
+    image: '/images/男性.png',
+    name: '山田 太郎',
     subtitle: '私が伺います！',
+  },
+  {
+    id: '2',
+    image: '/images/女性.png',
+    name: '佐藤 花子',
+    subtitle: '丁寧に対応します！',
   },
 ]
 
@@ -32,8 +38,6 @@ export default function Hero() {
     }, 5000)
     return () => clearInterval(timer)
   }, [])
-
-  const currentStaff = staff[0]
 
   return (
     <section
@@ -103,20 +107,21 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="flex-shrink-0 flex flex-col items-center gap-3 md:gap-4 animate-fadein-delay w-full md:w-72 lg:w-80">
-            <div className="w-full flex justify-center">
-              <img
-                src={currentStaff.image}
-                alt={currentStaff.name}
-                className="w-48 sm:w-56 md:w-64 lg:w-72 aspect-[3/4] object-cover object-top rounded-xl shadow-2xl"
-              />
-            </div>
-
-            <div className="bg-white/80 backdrop-blur-sm border border-sky-lighter rounded-xl px-6 py-3 text-center shadow-sm">
-              <p className="text-xs text-navy/50 font-medium mb-0.5">スタッフ</p>
-              <p className="text-navy font-black text-lg tracking-wide">{currentStaff.name}</p>
-              <p className="text-xs text-navy/70 mt-1">{currentStaff.subtitle}</p>
-            </div>
+          <div className="flex-shrink-0 flex gap-4 items-end animate-fadein-delay w-full md:w-auto justify-center">
+            {staff.map(s => (
+              <div key={s.id} className="flex flex-col items-center gap-3">
+                <img
+                  src={s.image}
+                  alt={s.name}
+                  className="w-36 sm:w-40 md:w-48 lg:w-56 aspect-[3/4] object-cover object-top rounded-xl shadow-2xl"
+                />
+                <div className="bg-white/80 backdrop-blur-sm border border-sky-lighter rounded-xl px-4 py-2 text-center shadow-sm">
+                  <p className="text-xs text-navy/50 font-medium mb-0.5">スタッフ</p>
+                  <p className="text-navy font-black text-base tracking-wide">{s.name}</p>
+                  <p className="text-xs text-navy/70 mt-1">{s.subtitle}</p>
+                </div>
+              </div>
+            ))}
           </div>
 
         </div>
