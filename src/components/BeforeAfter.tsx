@@ -3,22 +3,22 @@ import { useState, useRef, useCallback, useEffect } from 'react'
 const cases = [
   {
     id: '1',
-    before: '/images/トイレA.png',
-    after: '/images/トイレB.png',
+    before: '/images/トイレB.png',
+    after: '/images/トイレA.png',
     title: 'トイレクリーニング',
     description: '便器の黄ばみ・水垢・タンク内部まで丁寧に洗浄',
   },
   {
     id: '2',
-    before: '/images/エアコンA.png',
-    after: '/images/エアコンB.png',
+    before: '/images/エアコンB.png',
+    after: '/images/エアコンA.png',
     title: 'エアコンクリーニング',
     description: '内部のホコリやカビを徹底洗浄し、ニオイや効きを改善',
   },
   {
     id: '3',
-    before: '/images/洗面台A.png',
-    after: '/images/洗面台B.png',
+    before: '/images/洗面台B.png',
+    after: '/images/洗面台A.png',
     title: '洗面台クリーニング',
     description: '蛇口周りのカルキ汚れ・排水口の詰まりを除去',
   },
@@ -116,11 +116,11 @@ export default function BeforeAfter() {
         </div>
 
         <div
-          className="flex gap-5 overflow-x-auto pb-4 md:grid md:grid-cols-2 md:overflow-visible md:pb-0 -mx-4 px-4 md:mx-0 md:px-0"
+          className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4"
           style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' } as React.CSSProperties}
         >
           {cases.map(c => (
-            <div key={c.id} className="shrink-0 w-72 md:w-auto bg-white rounded-2xl overflow-hidden shadow-sm">
+            <div key={c.id} className="shrink-0 w-72 md:w-80 snap-start bg-white rounded-2xl overflow-hidden shadow-sm">
               <BeforeAfterSlider before={c.before} after={c.after} />
               <div className="p-5">
                 <div className="flex items-center gap-2 mb-1">

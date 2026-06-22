@@ -13,7 +13,7 @@ const works = [
   },
   {
     id: '3',
-    image: '/images/洗面台B.png',
+    image: '/images/洗面台A.png',
     title: '洗面台クリーニング',
     description: '蛇口周りのカルキ汚れや排水口の詰まりをしっかり除去。ピカピカの仕上がりでご満足いただけました。',
   },
@@ -46,13 +46,13 @@ export default function Works() {
         </div>
 
         <div
-          className="flex gap-4 overflow-x-auto pb-4 md:grid md:grid-cols-3 md:overflow-visible md:pb-0 -mx-4 px-4 md:mx-0 md:px-0"
+          className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4"
           style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' } as React.CSSProperties}
         >
           {works.map(work => (
             <article
               key={work.id}
-              className="shrink-0 w-64 md:w-auto bg-white border border-sky-lighter rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group"
+              className="shrink-0 w-64 md:w-72 snap-start bg-white border border-sky-lighter rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group"
             >
               <div className="aspect-video overflow-hidden">
                 <img
