@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 
 const LINE_URL = 'https://lin.ee/YFypQIW'
 const TEL = '090-1234-1234'
@@ -60,6 +60,32 @@ export default function Hero() {
   const onPointerUp = useCallback(() => {
     dragging.current = false
   }, [])
+
+  const [activeStaff, setActiveStaff] = useState(0)
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([])
+
+  const observerCb = useMemo(() => {
+    return (entries: IntersectionObserverEntry[]) => {
+      let best: { idx: number; ratio: number } | null = null
+      entries.forEach(entry => {
+        const idx = Number(entry.target.getAttribute('data-idx'))
+        if (!best || entry.intersectionRatio > best.ratio) {
+          best = { idx, ratio: entry.intersectionRatio }
+        }
+      })
+      if (best && (best as { idx: number; ratio: number }).ratio > 0.5) setActiveStaff((best as { idx: number; ratio: number }).idx)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!staffRef.current) return
+    const observer = new IntersectionObserver(observerCb, {
+      root: staffRef.current,
+      threshold: [0, 0.5, 1],
+    })
+    itemRefs.current.forEach(el => { if (el) observer.observe(el) })
+    return () => observer.disconnect()
+  }, [observerCb])
 
   return (
     <section
@@ -138,8 +164,14 @@ export default function Hero() {
             onPointerUp={onPointerUp}
             onPointerCancel={onPointerUp}
           >
-            {staff.map(s => (
-              <div key={s.id} className="shrink-0 w-48 md:w-56 lg:w-64 flex flex-col items-center gap-3">
+            {staff.map((s, i) => (
+              <div
+                key={s.id}
+                ref={el => { itemRefs.current[i] = el }}
+                data-idx={i}
+                className="shrink-0 w-48 md:w-56 lg:w-64 flex flex-col items-center gap-3 transition-opacity duration-300"
+                style={{ opacity: i === activeStaff ? 1 : 0.35 }}
+              >
                 <img
                   src={s.image}
                   alt={s.name}
