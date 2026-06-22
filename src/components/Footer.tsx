@@ -1,4 +1,4 @@
-const LINE_URL = 'https://page.line.me/245ksvcv?openQrModal=true'
+const LINE_URL = 'https://lin.ee/YFypQIW'
 const TEL = '090-6692-9256'
 
 export default function Footer() {

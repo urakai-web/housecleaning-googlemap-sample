@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 
-const LINE_URL = 'https://page.line.me/245ksvcv?openQrModal=true'
+const LINE_URL = 'https://lin.ee/YFypQIW'
 const TEL = '090-6692-9256'
 
 const heroImages = [

@@ -34,7 +34,7 @@ export default function Works() {
             エアコン、水回り、退去清掃など、さまざまな現場に対応しています。<br className="hidden md:block" />
             作業の様子は
             <a
-              href="https://www.instagram.com/cleanlab800"
+              href="https://www.instagram.com/urano_web?igsh=MTRmbWRiaXN1eDkxbg%3D%3D&utm_source=qr"
               target="_blank"
               rel="noopener noreferrer"
               className="text-navy font-bold underline underline-offset-2 hover:opacity-70 transition-opacity"
@@ -75,7 +75,7 @@ export default function Works() {
 
         <div className="mt-10 text-center">
           <a
-            href="https://www.instagram.com/cleanlab800"
+            href="https://www.instagram.com/urano_web?igsh=MTRmbWRiaXN1eDkxbg%3D%3D&utm_source=qr"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 border-2 border-navy text-navy font-bold px-8 py-3.5 rounded-full hover:bg-navy hover:text-white transition-all"
