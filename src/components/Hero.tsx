@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 
 const LINE_URL = 'https://lin.ee/YFypQIW'
-const TEL = '090-6692-9256'
+const TEL = '090-1234-1234'
 
 const heroImages = [
   '/images/ヒーローセクション1.png',
@@ -94,7 +94,7 @@ export default function Hero() {
 
             <div className="animate-fadein-delay">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-navy leading-tight text-center md:text-left">
-                札幌市の<br />
+                金沢市の<br />
                 ハウスクリーニング<br />
                 便利サービス
               </h1>

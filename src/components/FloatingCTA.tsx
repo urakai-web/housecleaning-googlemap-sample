@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 const LINE_URL = 'https://lin.ee/YFypQIW'
-const TEL = '090-6692-9256'
+const TEL = '090-1234-1234'
 
 export default function FloatingCTA() {
   const [open, setOpen] = useState(false)

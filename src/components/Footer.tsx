@@ -1,5 +1,5 @@
 const LINE_URL = 'https://lin.ee/YFypQIW'
-const TEL = '090-6692-9256'
+const TEL = '090-1234-1234'
 
 export default function Footer() {
   return (
@@ -11,7 +11,7 @@ export default function Footer() {
           <div>
             <img src="/images/ロゴ.png" alt="金沢クリーン" className="h-12 w-auto object-contain mb-3 brightness-0 invert" />
             <p className="text-white/60 text-sm leading-relaxed">
-              札幌市を中心に、ハウスクリーニング・<br />
+              金沢市を中心に、ハウスクリーニング・<br />
               便利サービスを提供しています。
             </p>
           </div>
@@ -28,7 +28,7 @@ export default function Footer() {
               </div>
               <div className="flex gap-3">
                 <dt className="text-white/40 w-20 shrink-0">所在地</dt>
-                <dd>〒003-0837 北海道札幌市白石区北郷七条3丁目12-15</dd>
+                <dd>〒920-8577 石川県金沢市広坂1丁目1-1</dd>
               </div>
               <div className="flex gap-3">
                 <dt className="text-white/40 w-20 shrink-0">営業時間</dt>
