@@ -157,19 +157,20 @@ export default function Hero() {
 
           <div
             ref={staffRef}
-            className="flex-shrink-0 animate-fadein-delay w-full md:w-72 lg:w-80 overflow-x-auto flex gap-4 px-4 -mx-4 cursor-grab active:cursor-grabbing select-none"
-            style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' } as React.CSSProperties}
+            className="flex-shrink-0 animate-fadein-delay w-full md:w-72 lg:w-80 overflow-x-auto flex gap-4 snap-x snap-mandatory md:snap-none cursor-grab active:cursor-grabbing select-none"
+            style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch', scrollPaddingInline: 'calc(50% - 96px)' } as React.CSSProperties}
             onPointerDown={onPointerDown}
             onPointerMove={onPointerMove}
             onPointerUp={onPointerUp}
             onPointerCancel={onPointerUp}
           >
+            <div className="shrink-0 w-[calc(50%-104px)] md:hidden" />
             {staff.map((s, i) => (
               <div
                 key={s.id}
                 ref={el => { itemRefs.current[i] = el }}
                 data-idx={i}
-                className="shrink-0 w-48 md:w-56 lg:w-64 flex flex-col items-center gap-3 transition-opacity duration-300"
+                className="shrink-0 w-48 md:w-56 lg:w-64 snap-center flex flex-col items-center gap-3 transition-opacity duration-300"
                 style={{ opacity: i === activeStaff ? 1 : 0.35 }}
               >
                 <img
@@ -185,6 +186,7 @@ export default function Hero() {
                 </div>
               </div>
             ))}
+            <div className="shrink-0 w-[calc(50%-104px)] md:hidden" />
           </div>
 
         </div>
